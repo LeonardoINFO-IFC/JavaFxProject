@@ -1,4 +1,4 @@
-package com.mycompany.javafxproject;
+package com.mycompany.javafxprojeto;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -129,7 +129,7 @@ public class App extends Application {
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
 
-        root.setTop(new Label(766️⃣7️⃣"Topo da janela"));
+        root.setTop(new Label("Topo da janela"));
         root.setBottom(new Label("Inferior da janela"));
         root.setCenter(new Label("Centro da janela"));
         root.setLeft(new Label("Equerda da janela"));
