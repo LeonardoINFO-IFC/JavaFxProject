@@ -1,15 +1,25 @@
 package com.mycompany.javafxprojeto;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -24,48 +34,46 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) {
-        BorderPane root = new BorderPane();
         
-        Font fTitulo = Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 30);
-        Font fCampo = Font.font("Verdana", FontWeight.NORMAL, FontPosture.ITALIC, 20);
-        Font fInput = Font.font("Verdana", FontWeight.NORMAL, FontPosture.REGULAR, 10);
+        VBox root = new VBox();
         
-        Text titulo = new Text("Login");
-        Label usuario = new Label("Usuario:");
-        Label senha = new Label("Senha:");
+        Label atividade = new Label("Atividade");
         
+        CheckBox leitura = new CheckBox("Leitura");
+        CheckBox ciclismo = new CheckBox("Ciclismo");
+        CheckBox track = new CheckBox("Track");
+        CheckBox corrida = new CheckBox("Corrida");
         
+        Label contrato = new Label("Concorda com o contato?");
+        RadioButton concordo = new RadioButton("Concordo");
+        RadioButton discordo = new RadioButton("Discordo");
+        RadioButton naosei = new RadioButton("Não sei");
         
-        Scene scene = new Scene(root, 640, 480);
-        stage.setScene(scene);
-        root.setTop(titulo);
+        ToggleGroup contratoGrup = new ToggleGroup();
+        concordo.setToggleGroup(contratoGrup);
+        discordo.setToggleGroup(contratoGrup);
+        naosei.setToggleGroup(contratoGrup);
         
-        GridPane campos = new GridPane();
-        campos.add(usuario, 0, 0);
-        campos.add(senha, 0, 1);
+        Label tObservacao = new Label("Observação");
+        TextArea observacao = new TextArea();
+        observacao.setPrefSize(400, 300);        
+        observacao.setWrapText(true);
         
-        TextField campoUsuario = new TextField();
-        campoUsuario.setFont(fInput);
-        campos.add(campoUsuario, 1, 0);
+        ObservableList<String> lista = FXCollections.observableArrayList("Informatica", "Administração", "Veste");
+        ListView<String> minhaListagem = new ListView<String>(lista);
         
-        PasswordField campoSenha = new PasswordField();
-        campoSenha.setFont(fInput);
-        campos.add(campoSenha, 1, 1);
+        ButtonBar botoes = new ButtonBar();
+        Button confirmar = new Button("Confirmar");
+        Button cancelar = new Button("Cancelar");
+        botoes.getButtons().addAll(confirmar, cancelar);
+         
         
-        titulo.setFont(fTitulo);
-        usuario.setFont(fCampo);
-        senha.setFont(fCampo);
-        senha.setTextFill(Color.RED);
-        
-        root.setCenter(campos);
-        
-        HBox botoes = new HBox();
-        botoes.getChildren().add(new Button("Login"));
-        botoes.getChildren().add(new Button("Cancelar"));
-        root.setBottom(botoes);
-        stage.setTitle("67 67 67 67 67 67 67 67 67");
+        root.getChildren().addAll(atividade, leitura, ciclismo, track, corrida, contrato, concordo, discordo, naosei, tObservacao, observacao, minhaListagem, botoes);
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Erro 404");
         stage.setScene(scene);
         stage.show();
+        
 
         /* Código inicial
         var javaVersion = SystemInfo.javaVersion();
@@ -238,6 +246,51 @@ public class App extends Application {
         botoes.getChildren().add(new Button("Cancelar"));
         root.setBottom(botoes);
          */
+ 
+         /*decimo codigo
+        BorderPane root = new BorderPane();
+        
+        Font fTitulo = Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 30);
+        Font fCampo = Font.font("Verdana", FontWeight.NORMAL, FontPosture.ITALIC, 20);
+        Font fInput = Font.font("Verdana", FontWeight.NORMAL, FontPosture.REGULAR, 10);
+        
+        Text titulo = new Text("Login");
+        Label usuario = new Label("Usuario:");
+        Label senha = new Label("Senha:");
+        
+        
+        
+        Scene scene = new Scene(root, 640, 480);
+        stage.setScene(scene);
+        root.setTop(titulo);
+        
+        GridPane campos = new GridPane();
+        campos.add(usuario, 0, 0);
+        campos.add(senha, 0, 1);
+        
+        TextField campoUsuario = new TextField();
+        campoUsuario.setFont(fInput);
+        campos.add(campoUsuario, 1, 0);
+        
+        PasswordField campoSenha = new PasswordField();
+        campoSenha.setFont(fInput);
+        campos.add(campoSenha, 1, 1);
+        
+        titulo.setFont(fTitulo);
+        usuario.setFont(fCampo);
+        senha.setFont(fCampo);
+        senha.setTextFill(Color.RED);
+        
+        root.setCenter(campos);
+        
+        HBox botoes = new HBox();
+        botoes.getChildren().add(new Button("Login"));
+        botoes.getChildren().add(new Button("Cancelar"));
+        root.setBottom(botoes);
+        stage.setTitle("67 67 67 67 67 67 67 67 67");
+        stage.setScene(scene);
+        stage.show();
+        */
     }
     
     public static void main(String[] args) {
