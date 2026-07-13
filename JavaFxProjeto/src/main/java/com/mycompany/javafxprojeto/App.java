@@ -49,83 +49,24 @@ public class App extends Application {
         
         VBox root = new VBox();
         
-        Menu file = new Menu("Arquivos");
-        MenuItem novoAquivo = new MenuItem("Novo");
-        MenuItem abrirAquivo = new MenuItem("Abrir");
-        MenuItem fecharAquivo = new MenuItem("Fechar");
-        file.getItems().addAll(novoAquivo, abrirAquivo, fecharAquivo);
+        Text tLogin = new Text("Login do Sistema");
         
-        Menu view = new Menu("Ver");
-        MenuItem zoomIn = new MenuItem("Zoon In");
-        MenuItem zoomOut = new MenuItem("Zoon Out");
-        MenuItem zoomNormal = new MenuItem("Zoon Normal");
-        view.getItems().addAll(zoomIn, zoomOut, zoomNormal);
-        
-        MenuBar meuMenu = new MenuBar();
-        meuMenu.getMenus().addAll(file, view);
-        
-        Group grupoPrincipal = new Group(meuMenu);
-        root.getChildren().add(grupoPrincipal);
-        
-        Label atividade = new Label("Atividade");
-        
-        CheckBox leitura = new CheckBox("Leitura");
-        CheckBox ciclismo = new CheckBox("Ciclismo");
-        CheckBox track = new CheckBox("Track");
-        CheckBox corrida = new CheckBox("Corrida");
-        
-        Label contrato = new Label("Concorda com o contato?");
-        RadioButton concordo = new RadioButton("Concordo");
-        RadioButton discordo = new RadioButton("Discordo");
-        RadioButton naosei = new RadioButton("Não sei");
-        
-        ToggleGroup contratoGrup = new ToggleGroup();
-        concordo.setToggleGroup(contratoGrup);
-        discordo.setToggleGroup(contratoGrup);
-        naosei.setToggleGroup(contratoGrup);
-        
-        Label tObservacao = new Label("Observação");
-        TextArea observacao = new TextArea();
-        observacao.setPrefSize(400, 300);        
-        observacao.setWrapText(true);
-        
-        ObservableList<String> lista = FXCollections.observableArrayList("Informatica", "Administração", "Veste");
-        ListView<String> minhaListagem = new ListView<String>(lista);
+        GridPane campos = new GridPane();
+        campos.add(new Label("Login:"), 0, 0);
+        campos.add(new TextField(), 1, 0);
+        campos.add(new Label("Senha:"), 0, 1);
+        campos.add(new TextField(), 1, 1);
         
         ButtonBar painelBt = new ButtonBar();
+        painelBt.setId("areabotoes");
+    
         Button btVoltar = new Button("Voltar");
+        
         Button btConfirmar = new Button("Confirmar");
         Button btExcluir = new Button("Excluir");
         painelBt.getButtons().addAll(btVoltar, btConfirmar, btExcluir);
         
-        TreeItem<String> cursos = new TreeItem<String>("Curso");
-        TreeItem<String> tecnico = new TreeItem<String>("Tecnico");
-        TreeItem<String> informatica = new TreeItem<String>("Informatica");
-        TreeItem<String> vestuario = new TreeItem<String>("Vetuaario");
-        TreeItem<String> adm = new TreeItem<String>("Administração");
-        
-        cursos.getChildren().add(tecnico);
-        tecnico.getChildren().addAll(informatica, vestuario, adm);
-        
-        TreeView<String> cursosIFC = new TreeView<String>(cursos);
-        
-        Label textoArvore = new Label("Árvore");
-        Label Nacimento = new Label("Data de Nacimento");
-        
-        HBox DataNacimento = new HBox();
-        Text diazinho = new Text("Dia: ");
-        Spinner<Integer> dia = new Spinner<Integer>(1, 30, 1);
-        Text mesinho = new Text("Mes: ");
-        Spinner<Integer> mes = new Spinner<Integer>(1, 12, 1);
-        Text anozinho = new Text("Ano: ");
-        Spinner<Integer> ano = new Spinner<Integer>(1900, 2026, 1900);
-        DataNacimento.getChildren().addAll(diazinho, dia, mesinho, mes, anozinho, ano);
-        
-        
-        
-        root.getChildren().addAll(atividade, leitura, ciclismo, track, corrida,
-                contrato, concordo, discordo, naosei, tObservacao, observacao,
-                textoArvore, cursosIFC, minhaListagem, Nacimento, DataNacimento, painelBt);
+        root.getChildren().addAll(tLogin, campos, painelBt);
         
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add("/css/style.css");
@@ -136,12 +77,10 @@ public class App extends Application {
         btConfirmar.setOnMouseClicked((new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event){
-                Alert avisoConfirmar = new Alert(Alert.AlertType.CONFIRMATION);
-                avisoConfirmar.setHeaderText("Tem certeza que quer entregar seus dados bancarioss?");
-                avisoConfirmar.show();
                 Alert aviso = new Alert(Alert.AlertType.INFORMATION);
                 aviso.setHeaderText("Usuário logado com sucesso");
                 aviso.show();
+                
             }
             
         }));
@@ -543,3 +482,102 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
          */
+
+    /*décimo terceiro
+        VBox root = new VBox();
+        
+        Menu file = new Menu("Arquivos");
+        MenuItem novoAquivo = new MenuItem("Novo");
+        MenuItem abrirAquivo = new MenuItem("Abrir");
+        MenuItem fecharAquivo = new MenuItem("Fechar");
+        file.getItems().addAll(novoAquivo, abrirAquivo, fecharAquivo);
+        
+        Menu view = new Menu("Ver");
+        MenuItem zoomIn = new MenuItem("Zoon In");
+        MenuItem zoomOut = new MenuItem("Zoon Out");
+        MenuItem zoomNormal = new MenuItem("Zoon Normal");
+        view.getItems().addAll(zoomIn, zoomOut, zoomNormal);
+        
+        MenuBar meuMenu = new MenuBar();
+        meuMenu.getMenus().addAll(file, view);
+        
+        Group grupoPrincipal = new Group(meuMenu);
+        root.getChildren().add(grupoPrincipal);
+        
+        Label atividade = new Label("Atividade");
+        
+        CheckBox leitura = new CheckBox("Leitura");
+        CheckBox ciclismo = new CheckBox("Ciclismo");
+        CheckBox track = new CheckBox("Track");
+        CheckBox corrida = new CheckBox("Corrida");
+        
+        Label contrato = new Label("Concorda com o contato?");
+        RadioButton concordo = new RadioButton("Concordo");
+        RadioButton discordo = new RadioButton("Discordo");
+        RadioButton naosei = new RadioButton("Não sei");
+        
+        ToggleGroup contratoGrup = new ToggleGroup();
+        concordo.setToggleGroup(contratoGrup);
+        discordo.setToggleGroup(contratoGrup);
+        naosei.setToggleGroup(contratoGrup);
+        
+        Label tObservacao = new Label("Observação");
+        TextArea observacao = new TextArea();
+        observacao.setPrefSize(400, 300);        
+        observacao.setWrapText(true);
+        
+        ObservableList<String> lista = FXCollections.observableArrayList("Informatica", "Administração", "Veste");
+        ListView<String> minhaListagem = new ListView<String>(lista);
+        
+        ButtonBar painelBt = new ButtonBar();
+        Button btVoltar = new Button("Voltar");
+        Button btConfirmar = new Button("Confirmar");
+        Button btExcluir = new Button("Excluir");
+        painelBt.getButtons().addAll(btVoltar, btConfirmar, btExcluir);
+        
+        TreeItem<String> cursos = new TreeItem<String>("Curso");
+        TreeItem<String> tecnico = new TreeItem<String>("Tecnico");
+        TreeItem<String> informatica = new TreeItem<String>("Informatica");
+        TreeItem<String> vestuario = new TreeItem<String>("Vetuario");
+        TreeItem<String> adm = new TreeItem<String>("Administração");
+        
+        cursos.getChildren().add(tecnico);
+        tecnico.getChildren().addAll(informatica, vestuario, adm);
+        
+        TreeView<String> cursosIFC = new TreeView<String>(cursos);
+        
+        Label textoArvore = new Label("Árvore");
+        Label Nacimento = new Label("Data de Nacimento");
+        
+        HBox DataNacimento = new HBox();
+        Text diazinho = new Text("Dia: ");
+        Spinner<Integer> dia = new Spinner<Integer>(1, 30, 1);
+        Text mesinho = new Text("Mes: ");
+        Spinner<Integer> mes = new Spinner<Integer>(1, 12, 1);
+        Text anozinho = new Text("Ano: ");
+        Spinner<Integer> ano = new Spinner<Integer>(1900, 2026, 1900);
+        DataNacimento.getChildren().addAll(diazinho, dia, mesinho, mes, anozinho, ano);
+        
+        
+        
+        root.getChildren().addAll(atividade, leitura, ciclismo, track, corrida,
+                contrato, concordo, discordo, naosei, tObservacao, observacao,
+                textoArvore, cursosIFC, minhaListagem, Nacimento, DataNacimento, painelBt);
+        
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("/css/style.css");
+        stage.setTitle("Erro 404");
+        stage.setScene(scene);
+        stage.show();
+        
+        btConfirmar.setOnMouseClicked((new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                Alert aviso = new Alert(Alert.AlertType.INFORMATION);
+                aviso.setHeaderText("Usuário logado com sucesso");
+                aviso.show();
+                
+            }
+            
+        }));
+    */
