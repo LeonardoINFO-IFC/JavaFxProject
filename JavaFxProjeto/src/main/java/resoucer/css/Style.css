@@ -6,4 +6,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 13 de jul. de 2026, 08:22:39
     Author     : aluno
 */
-
+#areabotoes{
+    -fx-align-content: center;
+}
