@@ -48,36 +48,34 @@ public class App extends Application {
     public void start(Stage stage) {
 
         VBox root = new VBox();
-
-        Text tLogin = new Text("Login do Sistema");
-
-        GridPane campos = new GridPane();
-        campos.setAlignment(Pos.CENTER);
-        campos.setHgap(10);
-        campos.setVgap(10);
-        campos.add(new Label("Login:"), 0, 0);
-        TextField tfLogin = new TextField();
-        campos.add(tfLogin, 1, 0);
-        campos.add(new Label("Senha:"), 0, 1);
-        PasswordField pfSenha = new PasswordField();
-        campos.add(pfSenha, 1, 1);
-
-        ButtonBar painelBt = new ButtonBar();
-        painelBt.setId("areabotoes");
-
-        Button btCancelar = new Button("Cancelar");
-        Button btConfirmar = new Button("Confirmar");
-        painelBt.getButtons().addAll( btConfirmar, btCancelar);
         
-        HBox caixaBotoes = new HBox(painelBt);
-        caixaBotoes.setAlignment(Pos.CENTER);
+        ButtonBar btVoltar = new ButtonBar("Voltar");
+        ButtonBar btAvançar = new ButtonBar("Avançar");
+        ButtonBar btRecarregar = new ButtonBar("Recarregar");
         
-        root.setAlignment(Pos.CENTER);
-        root.setSpacing(20);
-        root.getChildren().addAll(tLogin, campos, caixaBotoes);
-
-        Scene scene = new Scene(root, 640, 480);
-        scene.getStylesheets().add("/css/Style.css");
+        
+        MenuBar meuMenu = new MenuBar();
+        meuMenu.getMenus().addAll();
+        
+        Group grupoPrincipal = new Group(meuMenu);
+        root.getChildren().add(grupoPrincipal);
+        
+        Label tObservacao = new Label("Observação");
+        TextArea observacao = new TextArea();
+        observacao.setPrefSize(400, 300);        
+        observacao.setWrapText(true);
+        
+        ObservableList<String> lista = FXCollections.observableArrayList("Informatica", "Administração", "Veste");
+        ListView<String> minhaListagem = new ListView<String>(lista);
+        
+        
+        
+        
+        
+        root.getChildren().addAll( minhaListagem, Nacimento, DataNacimento, painelBt);
+        
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Erro 404");
         stage.setScene(scene);
         stage.show();
@@ -642,3 +640,40 @@ public class App extends Application {
             
         }));
  */
+
+/* decimo quarto
+ VBox root = new VBox();
+
+        Text tLogin = new Text("Login do Sistema");
+
+        GridPane campos = new GridPane();
+        campos.setAlignment(Pos.CENTER);
+        campos.setHgap(10);
+        campos.setVgap(10);
+        campos.add(new Label("Login:"), 0, 0);
+        TextField tfLogin = new TextField();
+        campos.add(tfLogin, 1, 0);
+        campos.add(new Label("Senha:"), 0, 1);
+        PasswordField pfSenha = new PasswordField();
+        campos.add(pfSenha, 1, 1);
+
+        ButtonBar painelBt = new ButtonBar();
+        painelBt.setId("areabotoes");
+
+        Button btCancelar = new Button("Cancelar");
+        Button btConfirmar = new Button("Confirmar");
+        painelBt.getButtons().addAll( btConfirmar, btCancelar);
+        
+        HBox caixaBotoes = new HBox(painelBt);
+        caixaBotoes.setAlignment(Pos.CENTER);
+        
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(20);
+        root.getChildren().addAll(tLogin, campos, caixaBotoes);
+
+        Scene scene = new Scene(root, 640, 480);
+        scene.getStylesheets().add("/css/Style.css");
+        stage.setTitle("Erro 404");
+        stage.setScene(scene);
+        stage.show();
+*/
