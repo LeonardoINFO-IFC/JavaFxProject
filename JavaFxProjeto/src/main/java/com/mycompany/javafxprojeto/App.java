@@ -43,58 +43,123 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    
+
     @Override
     public void start(Stage stage) {
-        
+
         VBox root = new VBox();
-        
+
         Text tLogin = new Text("Login do Sistema");
-        
+
         GridPane campos = new GridPane();
+        campos.setAlignment(Pos.CENTER);
+        campos.setHgap(10);
+        campos.setVgap(10);
         campos.add(new Label("Login:"), 0, 0);
-        campos.add(new TextField(), 1, 0);
+        TextField tfLogin = new TextField();
+        campos.add(tfLogin, 1, 0);
         campos.add(new Label("Senha:"), 0, 1);
-        campos.add(new TextField(), 1, 1);
-        
+        PasswordField pfSenha = new PasswordField();
+        campos.add(pfSenha, 1, 1);
+
         ButtonBar painelBt = new ButtonBar();
         painelBt.setId("areabotoes");
-    
-        Button btVoltar = new Button("Voltar");
-        
+
+        Button btCancelar = new Button("Cancelar");
         Button btConfirmar = new Button("Confirmar");
-        Button btExcluir = new Button("Excluir");
-        painelBt.getButtons().addAll(btVoltar, btConfirmar, btExcluir);
+        painelBt.getButtons().addAll( btConfirmar, btCancelar);
         
-        root.getChildren().addAll(tLogin, campos, painelBt);
+        HBox caixaBotoes = new HBox(painelBt);
+        caixaBotoes.setAlignment(Pos.CENTER);
         
-        Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add("/css/style.css");
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(20);
+        root.getChildren().addAll(tLogin, campos, caixaBotoes);
+
+        Scene scene = new Scene(root, 640, 480);
+        scene.getStylesheets().add("/css/Style.css");
         stage.setTitle("Erro 404");
         stage.setScene(scene);
         stage.show();
-        
-        btConfirmar.setOnMouseClicked((new EventHandler<MouseEvent>(){
+
+        /*btConfirmar.setOnMouseClicked((new EventHandler<MouseEvent>(){
+                @Override
+                public void handle(MouseEvent event){
+                    Alert aviso = new Alert(Alert.AlertType.CONFIRMATION);
+                    aviso.setHeaderText("Tem certeza que quer instalar esse virus?");
+                    aviso.show();
+
+                }
+
+            }));*/
+        EventHandler<MouseEvent> eh = new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event){
+            public void handle(MouseEvent event) {
                 Alert aviso = new Alert(Alert.AlertType.INFORMATION);
-                aviso.setHeaderText("Usuário logado com sucesso");
+                aviso.setHeaderText("Uuario logado com sucesso");
                 aviso.show();
+
+            }
+
+        };
+        
+        btConfirmar.addEventHandler(MouseEvent.MOUSE_CLICKED, eh);
+        btCancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, eh);
+        
+        EventHandler<MouseEvent> filtro = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (pfSenha.getText().length() == 0) {
+                Alert aviso = new Alert(Alert.AlertType.ERROR);
+                aviso.setHeaderText("Campo senha não preenchido");
+                
+                t.consume();
+                aviso.show();    
+                }
                 
             }
-            
-        }));
+
+        };EventHandler<MouseEvent> filtro3 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (tfLogin.getText().length() == 0) {
+                Alert aviso = new Alert(Alert.AlertType.ERROR);
+                aviso.setHeaderText("Campo Login não preenchido");
+                
+                t.consume();
+                aviso.show();    
+                }
+                
+            }
+
+        };
         
-       
+        EventHandler<MouseEvent> filtro2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (!tfLogin.getText().isEmpty() && !pfSenha.getText().isEmpty()) {
+                Alert aviso = new Alert(Alert.AlertType.CONFIRMATION);
+                aviso.setHeaderText("Tem certeza, mano? Tem certeza que quer nos dar acesso ao seu banco?");
+                
+                t.consume();
+                aviso.show();    
+                }
+                
+            }
+
+        };
+        painelBt.addEventFilter(MouseEvent.MOUSE_CLICKED, filtro3);
+        painelBt.addEventFilter(MouseEvent.MOUSE_CLICKED, filtro);
+        painelBt.addEventFilter(MouseEvent.MOUSE_CLICKED, filtro2);
     }
-    
+
     public static void main(String[] args) {
         launch();
     }
-    
+
 }
 
- /* Código inicial
+/* Código inicial
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
 
@@ -149,7 +214,7 @@ public class App extends Application {
         stage.setTitle("Sistema de teste");
         stage.show();
     }
-         */
+ */
  /* Terceiro código
         BorderPane root = new BorderPane();
 
@@ -165,7 +230,7 @@ public class App extends Application {
         stage.setTitle("Sistema de teste");
         stage.show();
     }
-         */
+ */
  /* Quarto código - Grades
         GridPane root = new GridPane();
 
@@ -180,7 +245,7 @@ public class App extends Application {
 
         stage.setTitle("Sistema de teste");
         stage.show();
-         */
+ */
  /* Quinto código
         AnchorPane root = new AnchorPane();
 
@@ -196,7 +261,7 @@ public class App extends Application {
         stage.setTitle("Sistema de teste");
         stage.show();
     }
-         */
+ */
  /* Sexto código
         FlowPane root = new FlowPane();
 
@@ -211,13 +276,13 @@ public class App extends Application {
 
         stage.setTitle("67Sistema de teste");
         stage.show();
-         */
+ */
  /* Códigos de alinhamento e espaçamento
 
         root.setAlignment(Pos.CENTER);
         root.setHgap(20);
         root.setVgap(20);
-         */
+ */
  /* Sétimo código
         TilePane root = new TilePane();
 
@@ -230,7 +295,7 @@ public class App extends Application {
         root.getChildren().add(new Text("Componente4"));
        
         root.setTileAlignment(Pos.CENTER);
-         */
+ */
  /* Oitavo código
         SplitPane root = new SplitPane();
 
@@ -243,7 +308,7 @@ public class App extends Application {
         root.getItems().add(new Text("Componente2"));
         root.getItems().add(new Text("Componente3"));
         root.getItems().add(new Text("Componente4"));
-         */
+ */
  /* Nono código
         BorderPane root = new BorderPane();
        
@@ -264,9 +329,8 @@ public class App extends Application {
         botoes.getChildren().add(new Button("Login"));
         botoes.getChildren().add(new Button("Cancelar"));
         root.setBottom(botoes);
-         */
- 
-         /*decimo codigo
+ */
+ /*decimo codigo
         BorderPane root = new BorderPane();
         
         Font fTitulo = Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 30);
@@ -309,9 +373,8 @@ public class App extends Application {
         stage.setTitle("67 67 67 67 67 67 67 67 67");
         stage.setScene(scene);
         stage.show();
-        */
-         
-         /*décimo primeiro
+ */
+ /*décimo primeiro
          
          VBox root = new VBox();
         
@@ -392,10 +455,8 @@ public class App extends Application {
         stage.setTitle("Erro 404");
         stage.setScene(scene);
         stage.show();
-         */ 
-         
-         
-         /*decimo segundo
+ */
+ /*decimo segundo
          VBox root = new VBox();
         
         Menu file = new Menu("Arquivos");
@@ -481,9 +542,9 @@ public class App extends Application {
         stage.setTitle("Erro 404");
         stage.setScene(scene);
         stage.show();
-         */
+ */
 
-    /*décimo terceiro
+ /*décimo terceiro
         VBox root = new VBox();
         
         Menu file = new Menu("Arquivos");
@@ -580,4 +641,4 @@ public class App extends Application {
             }
             
         }));
-    */
+ */
