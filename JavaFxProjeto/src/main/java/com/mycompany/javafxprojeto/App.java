@@ -72,7 +72,7 @@ public class App extends Application {
         
         
         
-        root.getChildren().addAll( minhaListagem, Nacimento, DataNacimento, painelBt);
+        root.getChildren().addAll( minhaListagem);
         
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add("/css/style.css");
